@@ -2,11 +2,13 @@ require 'mqtt'
 require 'socket'
 require './db/redis'
 
-chat_server = TCPServer.open(8080)
+require '../models/settings'
 
-mqtt_client = MQTT::Client.connect('localhost', 1883)
+chat_server = TCPServer.open(Settings.chat_server.port)
 
-mqtt_sub_server = TCPSocket.open('localhost', 8081)
+mqtt_client = MQTT::Client.connect(Settings.mqtt.host, Settings.mqtt.port)
+
+mqtt_sub_server = TCPSocket.open(Settings.mqtt.mqtt_sub_host, Settings.mqtt.mqtt_sub_port)
 
 socks = []
 socks << chat_server

@@ -1,6 +1,8 @@
 require 'socket'
 
-server = TCPSocket.open('localhost', 8080)
+require '../models/settings'
+
+server = TCPSocket.open(Settings.chat_server.host, Settings.chat_server.port)
 
 def close(reason = nil)
   puts reason
@@ -8,9 +10,7 @@ def close(reason = nil)
   Process.exit!(true)
 end
 
-trap 'INT' do
-  close('ctrl-c')
-end
+trap 'INT' do close('ctrl-c') end
 
 req = Thread.new do
   loop {

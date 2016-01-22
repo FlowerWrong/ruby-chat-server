@@ -2,16 +2,24 @@ defaults: &defaults
   mysql:
     host: '127.0.0.1'
     port: 3306
-    user_name: 'root'
+    username: 'root'
     password: 'root'
+    database: 'liveneeq2_development'
 
   redis:
     host: '127.0.0.1'
     port: 6379
+    namespace: 'chat'
 
   mqtt:
     host: '127.0.0.1'
     port: 1833
+    mqtt_sub_port: 8090
+    mqtt_sub_host: '127.0.0.1'
+
+  chat_server:
+    host: '127.0.0.1'
+    port: 8080
 
 development:
   <<: *defaults

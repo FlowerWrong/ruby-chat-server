@@ -3,8 +3,10 @@ require 'hiredis'
 require 'redis-namespace'
 require 'json'
 
+require '../models/settings'
+
 redis_connection = Redis.new(driver: :hiredis)
-$redis = Redis::Namespace.new(:chat, redis: redis_connection)
+$redis = Redis::Namespace.new(Settings.redis.namespace.to_sym, redis: redis_connection)
 
 def get_name(sockfd, host, port)
   name = nil
