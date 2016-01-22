@@ -1,0 +1,23 @@
+defaults: &defaults
+  mysql:
+    host: '127.0.0.1'
+    port: 3306
+    user_name: 'root'
+    password: 'root'
+
+  redis:
+    host: '127.0.0.1'
+    port: 6379
+
+  mqtt:
+    host: '127.0.0.1'
+    port: 1833
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
